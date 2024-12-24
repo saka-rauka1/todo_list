@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}Todo List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="text-center">Todo List</h1>
+    </div>
+    <div class="row">
+        {{ render_form(form, novalidate=True) }}
+    </div>
+</div>
+<div class="container-fluid">
+    <hr />
+    <form action="{{ url_for('delete') }}" method="post">
+
+        {% for task in tasks %}
+        <div class="row align-items-center">
+            <div class="col-auto d-flex">
+                <input type="checkbox" name="task-check" value="{{loop.index0}}" id="task-{{ loop.index }}-check" class="task-check">
+            </div>
+            <h2 id="task-{{ loop.index }}" class="col-lg-11">{{ task }}</h2>
+        </div>
+        <hr />
+        {% endfor %}
+
+        <button type="submit" class="btn btn-danger">Delete Checked Tasks</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+body {
+    background-color: #333;
+    color: white;
+}
+
+.task-check {
+    width: 25px;
+    height: 25px;
+}
